@@ -1,0 +1,6 @@
+demo/
+short/
+*.log
+*.mov
+*.mp4
+*.pyc
