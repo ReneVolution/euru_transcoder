@@ -4,3 +4,4 @@ short/
 *.mov
 *.mp4
 *.pyc
+.vagrant/
