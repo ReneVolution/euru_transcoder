@@ -5,3 +5,6 @@ short/
 *.mp4
 *.pyc
 .vagrant/
+hosts
+Video/
+.aws-credentials
