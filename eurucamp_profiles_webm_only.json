@@ -1,0 +1,11 @@
+[
+	{	"type": "webm",
+		"postfix": "webm",
+		"width": 640,
+		"height": 360,
+		"fps": 25,
+		"gopsize": 150,
+		"video_br": 1000,
+		"audio_br": 128
+	}
+]

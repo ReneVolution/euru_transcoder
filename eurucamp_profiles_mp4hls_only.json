@@ -1,0 +1,32 @@
+[
+	{	"type": "mp4+hls",
+		"postfix": "hi",
+		"width": 1280,
+		"height": 720,
+		"profile": "main",
+		"fps": 25,
+		"gopsize": 250,
+		"video_br": 3300,
+		"audio_br": 192
+	},
+	{	"type": "mp4+hls",
+		"postfix": "mid",
+		"width": 640,
+		"height": 360,
+		"profile": "main",
+		"fps": 25,
+		"gopsize": 250,
+		"video_br": 900,
+		"audio_br": 128
+	},
+	{	"type": "mp4+hls",
+		"postfix": "low",
+		"width": 400,
+		"height": 224,
+		"profile": "baseline",
+		"fps": 25,
+		"gopsize": 250,
+		"video_br": 512,
+		"audio_br": 64
+	}
+]
