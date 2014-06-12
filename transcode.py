@@ -182,7 +182,7 @@ def process(src_fname, destroot, profiles):
                                      seglist_name=seg_list,
                                      outname=outname)
 
-                t = Thread(target=execute, args=(cmd, src_fname, out_fname))
+                t = Thread(target=execute, args=(cmd, src_fname, seg_list))
                 t.start()
                 tasks.append(t)
 
