@@ -71,31 +71,41 @@ def execute(cmd, src_fname, dst_fname):
 
 
 def fetch_from_http(url):
-    baseFile = "".join(x for x in os.path.basename(url) if x.isalnum())
+    uri_file = url.rsplit('/')[-1]
+    dec_name = urllib2.unquote(uri_file)
+    split_name = dec_name.rsplit('.', 1)
+    f_ext = split_name[1]
+    clean_name = "".join(x for x in split_name[0] if x.isalnum())
+
+    baseFile = clean_name + "." + f_ext
 
     temp_path = "tmp/"
     try:
-        file = os.path.join(temp_path, baseFile)
+        os.makedirs(temp_path)
+    except:
+        pass
 
+    try:
+        file_ = os.path.join(temp_path, baseFile)
+	logging.info("Start to fetch URI: {0} => {1}".format(url, file_))
         req = urllib2.urlopen(url)
-        total_size = int(req.info().getheader('Content-Length').strip())
-        downloaded = 0
         CHUNK = 256 * 10240
-        with open(file, 'wb') as fp:
+        with open(file_, 'wb') as fp:
             while True:
                 chunk = req.read(CHUNK)
-                downloaded += len(chunk)
                 if not chunk:
                     break
                 fp.write(chunk)
     except urllib2.HTTPError, e:
-        print "HTTP Error:", e.code, url
+        logging.error("HTTP Error:{0}{1}".format(e.code, url))
         return False
     except urllib2.URLError, e:
-        print "URL Error:", e.reason, url
+        logging.error("URL Error:{0}{1}".format(e.reason, url))
         return False
 
-    return file
+	
+    logging.info("Finished fetch URI: {0} => {1}".format(url, file_))
+    return file_
 
 
 def process(src_fname, destroot, profiles):
@@ -214,7 +224,7 @@ if __name__ == '__main__':
         if input_file.startswith("http://"):
             tmpfile = fetch_from_http(input_file)
             if tmpfile is not False:
-                process(input_file, destination, profile_data)
+                process(tmpfile, destination, profile_data)
         else:
             process(input_file, destination, profile_data)
     else:
