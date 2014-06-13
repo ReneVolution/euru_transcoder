@@ -7,4 +7,5 @@ short/
 .vagrant/
 hosts
 Video/
+.ropeproject
 .aws-credentials

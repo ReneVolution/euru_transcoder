@@ -60,7 +60,9 @@ def execute(cmd, src_fname, dst_fname):
     p = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE)
     __, stderr = p.communicate()
 
-    if stderr is not None:
+    exit_code = p.wait()
+
+    if exit_code != 0:
         logging.error("Transcoding Error: {0}".format(stderr))
 
     else:
@@ -112,6 +114,7 @@ def process(src_fname, destroot, profiles):
 
         try:
             os.makedirs(dst_base)
+            os.makedirs("tmp/")
         except:
             pass
 
@@ -155,6 +158,8 @@ def process(src_fname, destroot, profiles):
                                           passno=passno,
                                           tplog=tplog,
                                           outname=out_fname)
+
+                print cmd
 
                 t = Thread(target=execute, args=(cmd, src_fname, out_fname))
                 t.start()
