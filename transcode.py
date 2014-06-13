@@ -85,7 +85,6 @@ def fetch_from_http(url):
             while True:
                 chunk = req.read(CHUNK)
                 downloaded += len(chunk)
-                print math.floor((downloaded / total_size) * 100)
                 if not chunk:
                     break
                 fp.write(chunk)
@@ -158,8 +157,6 @@ def process(src_fname, destroot, profiles):
                                           passno=passno,
                                           tplog=tplog,
                                           outname=out_fname)
-
-                print cmd
 
                 t = Thread(target=execute, args=(cmd, src_fname, out_fname))
                 t.start()
