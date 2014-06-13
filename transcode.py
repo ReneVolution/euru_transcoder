@@ -60,8 +60,12 @@ def execute(cmd, src_fname, dst_fname):
     p = Popen(shlex.split(cmd), stdout=PIPE, stderr=PIPE)
     __, stderr = p.communicate()
 
-    logging.info("Finished transcoding of file: {0} => {1}".format(
-        src_fname, dst_fname))
+    if stderr is not None:
+        logging.error("Transcoding Error: {0}".format(stderr))
+
+    else:
+        logging.info("Finished transcoding of file: {0} => {1}".format(
+            src_fname, dst_fname))
 
 
 def fetch_from_http(url):
