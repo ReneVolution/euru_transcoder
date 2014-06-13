@@ -67,7 +67,7 @@ def execute(cmd, src_fname, dst_fname):
 def fetch_from_http(url):
     baseFile = "".join(x for x in os.path.basename(url) if x.isalnum())
 
-    temp_path = "/tmp/"
+    temp_path = "tmp/"
     try:
         file = os.path.join(temp_path, baseFile)
 
@@ -113,7 +113,7 @@ def process(src_fname, destroot, profiles):
 
         while passno <= 2:
             for profile in enc_profiles:
-                tplog = "/tmp/twopass_{0}_{1}".format(
+                tplog = "tmp/twopass_{0}_{1}".format(
                     src_base, profile['postfix'])
 
                 if 'mp4' in profile['type']:
