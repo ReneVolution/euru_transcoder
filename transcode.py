@@ -103,7 +103,7 @@ def fetch_from_http(url):
         logging.error("URL Error:{0}{1}".format(e.reason, url))
         return False
 
-	
+
     logging.info("Finished fetch URI: {0} => {1}".format(url, file_))
     return file_
 
@@ -169,6 +169,7 @@ def process(src_fname, destroot, profiles):
                                           outname=out_fname)
 
                 t = Thread(target=execute, args=(cmd, src_fname, out_fname))
+
                 t.start()
                 tasks.append(t)
 
